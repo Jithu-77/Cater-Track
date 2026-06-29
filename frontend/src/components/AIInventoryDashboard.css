@@ -1,0 +1,411 @@
+.ai-inventory-dashboard {
+  padding: 20px;
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.ai-check-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.ai-check-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.ai-check-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #dc2626;
+  margin-bottom: 20px;
+}
+
+.ai-status-section,
+.inventory-overview,
+.notifications-section,
+.critical-items-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.ai-status-section h3,
+.inventory-overview h3,
+.notifications-section h3,
+.critical-items-section h3 {
+  margin: 0 0 20px 0;
+  color: #1e293b;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.status-label {
+  font-weight: 500;
+  color: #64748b;
+}
+
+.status-value {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.status-value.running {
+  color: #059669;
+}
+
+.status-value.stopped {
+  color: #dc2626;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.overview-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.overview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.overview-card.alert {
+  background: #fef3c7;
+  border-color: #fbbf24;
+}
+
+.overview-card.critical {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.card-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.card-content p {
+  margin: 0;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.no-notifications {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+}
+
+.no-notifications-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-card {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.notification-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notification-card.critical {
+  border-left: 4px solid #ef4444;
+  background: #fef2f2;
+}
+
+.notification-card.high {
+  border-left: 4px solid #f97316;
+  background: #fff7ed;
+}
+
+.notification-card.medium {
+  border-left: 4px solid #3b82f6;
+  background: #eff6ff;
+}
+
+.notification-card.low {
+  border-left: 4px solid #10b981;
+  background: #f0fdf4;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.notification-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+
+.notification-icon {
+  font-size: 1.2rem;
+}
+
+.notification-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.priority-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.time-ago {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.notification-message {
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.ai-insights {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.insight-item {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.suggested-actions {
+  margin-top: 12px;
+}
+
+.suggested-actions ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+}
+
+.suggested-actions li {
+  margin-bottom: 4px;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.notification-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.action-btn.primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.action-btn.primary:hover {
+  background: #2563eb;
+}
+
+.critical-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.critical-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.item-info h4 {
+  margin: 0 0 4px 0;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+
+.item-info p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.item-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.stock-level {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.stock-level.out-of-stock {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.stock-level.low-stock {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.threshold {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .ai-inventory-dashboard {
+    padding: 16px;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .overview-grid,
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .notification-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .critical-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .item-status {
+    align-items: flex-start;
+  }
+}
